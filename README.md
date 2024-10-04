@@ -16,8 +16,11 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
     npx expo start
    ```
 
-3. Press i to run the IOS simulator
-   
+3. Run the iOS simulator
+
+   ```bash
+      i
+   ```
 
 In the output, you'll find options to open the app in a
 
