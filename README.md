@@ -19,7 +19,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 3. Run the iOS simulator
 
    ```bash
-      i
+   i
    ```
 
 In the output, you'll find options to open the app in a
