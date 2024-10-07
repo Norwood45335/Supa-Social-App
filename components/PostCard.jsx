@@ -33,6 +33,7 @@ const PostCard = ({
     currentUser,
     router,
     hasShadow = true,
+    showMoreIcon = true,
 }) => {
     const shadowStyles = {
         shadowOffset: {
@@ -51,8 +52,11 @@ const PostCard = ({
         setLikes(item?.postLikes); 
     },[])
 
+
+
     const createdAt = moment(item?.created_at).format('MMM D');
     const openPostDetails = ()=>{
+        if (!showMoreIcon) return null;
         router.push({pathname: 'postDetails', params: {postId: item?.id}})
     }
 
@@ -94,6 +98,8 @@ const PostCard = ({
         Share.share(content);
     }
 
+    //console.log('post item comments:', item?.comments);
+
     const liked = likes.filter(like=> like.userId==currentUser?.id) [0]? true: false;
 
   return (
@@ -112,9 +118,14 @@ const PostCard = ({
             </View>
         </View>
 
-        <TouchableOpacity onPress={openPostDetails}>
-            <Icon name="threedotshorizontal" size={hp(3.4)} strokeWidth={3} color={theme.colors.text} />
-        </TouchableOpacity>
+        {
+            showMoreIcon && (
+                <TouchableOpacity onPress={openPostDetails}>
+                    <Icon name="threedotshorizontal" size={hp(3.4)} strokeWidth={3} color={theme.colors.text} />
+                </TouchableOpacity>
+            )
+        }
+        
       </View>
 
       {/* post body and media */}
@@ -176,8 +187,7 @@ const PostCard = ({
             </TouchableOpacity>
             <Text style={styles.count}>
                 {
-                    //likes?.length
-                    0
+                    item?.comments[0]?.count
                 }
             </Text>
         </View>
